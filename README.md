@@ -1,8 +1,3 @@
-# ticket-upgrader
-ticket-upgrader file processor
-
-
-
 Assumptions :
 
 1) Once a invalid reason is received no further check will be done
@@ -18,7 +13,7 @@ Assumptions :
 
 
 Dependencies :
-junit-3.8.1.jar add in the ZIP file for dependency. Or run Maven command (mvn install --DskipTest) to download it.
+junit-3.8.1.zip add in the ZIP file for dependency (rename this to .jar as .jar is not allowed by google to send over emails). Or run Maven command (mvn install --DskipTest) to download it. Or same can be download from https://github.com/gauravjeswani/ticket-upgrader git repository.
 
 
 Observation with Input data Given In PDF :
