@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public enum CabinType {
 
-  BUSINESS("BUSINESS"), ECONOMY("Economy"), FIRST("First"), PREMIUM_ECONOMY("Premium Economy");
+  BUSINESS("Business"), ECONOMY("Economy"), FIRST("First"), PREMIUM_ECONOMY("Premium Economy");
 
   private String cabinTypeName;
 

@@ -1,7 +1,7 @@
 package com.airlines.ticket.upgrader;
 
-import com.airlines.ticket.upgrader.data.enums.FileFormat;
 import com.airlines.ticket.upgrader.exception.exception.TicketUpgradeException;
+import com.airlines.ticket.upgrader.file.process.FileFormat;
 
 /**
  * Ticket Processor Interface to call ticket processor methods

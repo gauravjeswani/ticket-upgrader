@@ -26,13 +26,17 @@ public class DiscountUpdater {
 
     final char fareClass = ticketInfo.getFareClass().charAt(0);
 
-    if (fareClass >= 'A' && fareClass <= 'E') {
+    // A to E
+    if (fareClass <= 'E') {
       ticketInfo.setAppliedDiscount(DiscountCode.OFFER_20);
-    } else if (fareClass >= 'F' && fareClass <= 'K') {
+    } else if (fareClass <= 'K') {
+      // F to K
       ticketInfo.setAppliedDiscount(DiscountCode.OFFER_30);
-    } else if (fareClass >= 'L' && fareClass <= 'R') {
+    } else if (fareClass <= 'R') {
+      // L to R
       ticketInfo.setAppliedDiscount(DiscountCode.OFFER_25);
     } else {
+      // S to Z
       ticketInfo.setAppliedDiscount(DiscountCode.NO_DICOUNT);
     }
   }

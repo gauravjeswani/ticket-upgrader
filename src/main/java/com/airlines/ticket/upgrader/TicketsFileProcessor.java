@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.airlines.ticket.upgrader.common.DiscountUpdater;
-import com.airlines.ticket.upgrader.common.FileFormatResolver;
 import com.airlines.ticket.upgrader.data.TicketInfo;
-import com.airlines.ticket.upgrader.data.enums.FileFormat;
 import com.airlines.ticket.upgrader.data.field.validator.TicketValidator;
 import com.airlines.ticket.upgrader.exception.exception.TicketUpgradeException;
 import com.airlines.ticket.upgrader.exception.exception.TicketUpgradeSystemException;
-import com.airlines.ticket.upgrader.file.process.FileProcessorResolver;
+import com.airlines.ticket.upgrader.file.process.FileFormat;
+import com.airlines.ticket.upgrader.file.process.FileProcessorFactory;
 import com.airlines.ticket.upgrader.file.process.IFileProcessor;
 
 /**
@@ -46,10 +45,10 @@ class TicketsFileProcessor implements ITicketsFileProcessor {
     try {
 
       //Get File Format
-      final FileFormat inputFileFormat = FileFormatResolver.getFileFormat(inputFilePath);
+      final FileFormat inputFileFormat = FileProcessorFactory.getFactory(inputFilePath);
 
       //Read File Date
-      final IFileProcessor inputFileProcessor = FileProcessorResolver.getFileProcessor(inputFileFormat);
+      final IFileProcessor inputFileProcessor = inputFileFormat.getFileProcessor();
       final List<TicketInfo> tickets = inputFileProcessor.readFile(inputFilePath);
 
       //Process File Data
@@ -74,7 +73,7 @@ class TicketsFileProcessor implements ITicketsFileProcessor {
         writeProcessor = inputFileProcessor;
         outputFileFormat = inputFileFormat;
       } else {
-        writeProcessor = FileProcessorResolver.getFileProcessor(outputFileFormat);
+        writeProcessor = outputFileFormat.getFileProcessor();
       }
 
       final String inputWithoutExtention = inputFilePath.substring(0,

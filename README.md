@@ -25,13 +25,11 @@ Record Input Data Is Invalid for Dates, while it is displayed in expected record
 
 
 
-Test Data (testinf method in TicketUpgraderTest) : (Check console to get the Input/Output file Path)
+Input Test Data (testinf method in TicketUpgraderTest) : (Check console to get the Input/Output file Path)
 
-TicketUpgrader\src\test\resources\csv\Input.csv : Same as Input provided in PDF (testWithInputFileLocation)
+TicketUpgrader\src\test\resources\csv\Input.csv : Same as Input provided in PDF
 TicketUpgrader\src\test\resources\csv\Input_1.csv : Same as Input needed for Expected Out in PDF (As Input and Expected results data is not in sync) (testWithInputFileLocationAndName)
-TicketUpgrader\src\test\resources\csv\Input_2.csv : All Valid Data (testWithInputFileName)
-TicketUpgrader\src\test\resources\csv\Input_3.csv : All Invalid Data with all validation failed  (testWithInputFilePath)
-TicketUpgrader\src\test\resources\txt\Input.txt : Invalid file format (testWithInputFilePathAndWrongFormat)
-"C://test//csv//file.csv" : Test with missing input file (testWithMissingInputFile)
+TicketUpgrader\src\test\resources\csv\Input_2.csv : All Valid Data
+TicketUpgrader\src\test\resources\csv\Input_3.csv : All Invalid Data with all validation failed
 
 AppTest.java : Main method to pass the absolute path of file to process.
