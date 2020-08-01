@@ -42,8 +42,8 @@ public class TicketUpgraderTest extends TestCase {
 
     deleteOutputFilesIfExist(classLoader, "csv/Input_2_valid.csv", "csv/Input_2_invalid.csv");
 
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_2.csv");
-    processor.processFile();
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_2.csv");
+    processor.processTickets();
 
     validateRecordCount(classLoader, "csv/Input_3_valid.csv", 0);
     validateRecordCount(classLoader, "csv/Input_3_invalid.csv", 5);
@@ -56,8 +56,8 @@ public class TicketUpgraderTest extends TestCase {
 
     deleteOutputFilesIfExist(classLoader, "csv/Input_2_valid.csv", "csv/Input_2_invalid.csv");
 
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_2.csv");
-    processor.processFile();
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_2.csv");
+    processor.processTickets();
 
     validateRecordCount(classLoader, "csv/Input_2_valid.csv", 5);
     validateRecordCount(classLoader, "csv/Input_2_invalid.csv", 0);
@@ -70,8 +70,8 @@ public class TicketUpgraderTest extends TestCase {
     final ClassLoader classLoader = this.getClass().getClassLoader();
     deleteOutputFilesIfExist(classLoader, "csv/Input_3_valid.csv", "csv/Input_3_invalid.csv");
 
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_3.csv");
-    processor.processFile();
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_3.csv");
+    processor.processTickets();
 
     final File configFile = new File(classLoader.getResource("csv/Input_3_invalid.csv").getFile());
     try (BufferedReader br = new BufferedReader(new FileReader(configFile.getAbsoluteFile()))) {
@@ -101,8 +101,8 @@ public class TicketUpgraderTest extends TestCase {
     final ClassLoader classLoader = this.getClass().getClassLoader();
     deleteOutputFilesIfExist(classLoader, "csv/Input_2_valid.csv", "csv/Input_2_invalid.csv");
 
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_2.csv");
-    processor.processFile();
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_2.csv");
+    processor.processTickets();
 
     final File configFile = new File(classLoader.getResource("csv/Input_2_valid.csv").getFile());
 
@@ -117,11 +117,11 @@ public class TicketUpgraderTest extends TestCase {
       final String thirdRecord = br.readLine();
       final String fourthRecord = br.readLine();
       final String fifthRecord = br.readLine();
-      assertTrue(firstRecord.contains(DiscountCode.OFFER_20.getDiscountCodeValue()));
-      assertTrue(secondRecord.contains(DiscountCode.OFFER_30.getDiscountCodeValue()));
+      assertTrue(firstRecord.contains(DiscountCode.OFFER_25.getDiscountCodeValue()));
+      assertTrue(!secondRecord.contains("OFFER"));
+      assertTrue(thirdRecord.contains(DiscountCode.OFFER_20.getDiscountCodeValue()));
       assertTrue(fourthRecord.contains(DiscountCode.OFFER_25.getDiscountCodeValue()));
-      assertTrue(!thirdRecord.contains("OFFER"));
-      assertTrue(!fifthRecord.contains("OFFER"));
+      assertTrue(fifthRecord.contains(DiscountCode.OFFER_30.getDiscountCodeValue()));
 
     } catch (final IOException e) {
       assertTrue(false);
@@ -135,9 +135,8 @@ public class TicketUpgraderTest extends TestCase {
     deleteOutputFilesIfExist(classLoader, "csv/Input_valid.csv", "csv/Input_invalid.csv");
 
     final File configFile = new File(classLoader.getResource("csv").getFile());
-    final ITicketsFileProcessor processor = TicketsUpgrader
-        .getProcessorWithDefaultFileName(configFile.getAbsolutePath());
-    processor.processFile();
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileName(configFile.getAbsolutePath());
+    processor.processTickets();
     final URL validFile = classLoader.getResource("csv/Input_valid.csv");
     final URL invalidFile = classLoader.getResource("csv/Input_invalid.csv");
     assertNotNull(validFile);
@@ -148,14 +147,14 @@ public class TicketUpgraderTest extends TestCase {
 
     // Delete Output File If Exist Before it
     final ClassLoader classLoader = this.getClass().getClassLoader();
-    deleteOutputFilesIfExist(classLoader, "csv/Input_1_valid.csv", "csv/Input_1_invalid.csv");
+    deleteOutputFilesIfExist(classLoader, "json/Input_1_valid.json", "json/Input_1_invalid.json");
 
-    final File configFile = new File(classLoader.getResource("csv").getFile());
-    final ITicketsFileProcessor processor = TicketsUpgrader
-        .getProcessorWithFileLocationAndName(configFile.getAbsolutePath(), "Input_1.csv");
-    processor.processFile();
-    final URL validFile = classLoader.getResource("csv/Input_1_valid.csv");
-    final URL invalidFile = classLoader.getResource("csv/Input_1_invalid.csv");
+    final File configFile = new File(classLoader.getResource("json").getFile());
+    final ITicketsProcessor processor = TicketsUpgrader
+        .getProcessorWithFileLocationAndName(configFile.getAbsolutePath(), "Input_1.json");
+    processor.processTickets();
+    final URL validFile = classLoader.getResource("json/Input_1_valid.json");
+    final URL invalidFile = classLoader.getResource("json/Input_1_invalid.json");
     assertNotNull(validFile);
     assertNotNull(invalidFile);
   }
@@ -165,8 +164,8 @@ public class TicketUpgraderTest extends TestCase {
     // Delete Output File If Exist Before it
     final ClassLoader classLoader = this.getClass().getClassLoader();
     deleteOutputFilesIfExist(classLoader, "csv/Input_2_valid.csv", "csv/Input_2_invalid.csv");
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_2.csv");
-    processor.processFile();
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithDefaultFileLocation("Input_2.csv");
+    processor.processTickets();
     final URL validFile = classLoader.getResource("csv/Input_2_valid.csv");
     final URL invalidFile = classLoader.getResource("csv/Input_2_invalid.csv");
     assertNotNull(validFile);
@@ -180,8 +179,8 @@ public class TicketUpgraderTest extends TestCase {
     deleteOutputFilesIfExist(classLoader, "csv/Input_3_valid.csv", "csv/Input_3_invalid.csv");
 
     final File configFile = new File(classLoader.getResource("csv/Input_3.csv").getFile());
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithFilePath(configFile.getAbsolutePath());
-    processor.processFile();
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithFilePath(configFile.getAbsolutePath());
+    processor.processTickets();
 
     final URL validFileURL = classLoader.getResource("csv/Input_3_valid.csv");
     final URL invalidFileURL = classLoader.getResource("csv/Input_3_invalid.csv");
@@ -192,9 +191,9 @@ public class TicketUpgraderTest extends TestCase {
 
   public void testWithMissingInputFile() {
 
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithFilePath("C://test//csv//file.csv");
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithFilePath("C://test//csv//file.csv");
     try {
-      processor.processFile();
+      processor.processTickets();
     } catch (final TicketUpgradeException e) {
       assertEquals("SS-103", e.getErrorCode());
       assertEquals("Error occured during reading file C://test//csv//file.csv", e.getMessage());
@@ -205,9 +204,9 @@ public class TicketUpgraderTest extends TestCase {
 
     final ClassLoader classLoader = this.getClass().getClassLoader();
     final File configFile = new File(classLoader.getResource("txt/Input.txt").getFile());
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithFilePath(configFile.getAbsolutePath());
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithFilePath(configFile.getAbsolutePath());
     try {
-      processor.processFile();
+      processor.processTickets();
     } catch (final TicketUpgradeException e) {
       assertEquals("BS-102", e.getErrorCode());
       assertEquals("File processing not supported for .txt", e.getMessage());
@@ -218,9 +217,9 @@ public class TicketUpgraderTest extends TestCase {
 
     final ClassLoader classLoader = this.getClass().getClassLoader();
     final File configFile = new File(classLoader.getResource("pdf/input.pdf").getFile());
-    final ITicketsFileProcessor processor = TicketsUpgrader.getProcessorWithFilePath(configFile.getAbsolutePath());
+    final ITicketsProcessor processor = TicketsUpgrader.getProcessorWithFilePath(configFile.getAbsolutePath());
     try {
-      processor.processFile();
+      processor.processTickets();
     } catch (final TicketUpgradeException e) {
       assertEquals("BS-101", e.getErrorCode());
       assertEquals("Invalid File Format Received!!!", e.getMessage());

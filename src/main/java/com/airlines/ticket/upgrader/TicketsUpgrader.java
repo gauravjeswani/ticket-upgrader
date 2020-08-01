@@ -22,13 +22,13 @@ public class TicketsUpgrader {
   }
 
   /**
-   * The method will return the {@link ITicketsFileProcessor} with default file
+   * The method will return the {@link ITicketsProcessor} with default file
    * location {@link CommonConstants.DEFAULT_FILE_LOCATION}
    *
    * @param inputFileName
    * @return
    */
-  public static ITicketsFileProcessor getProcessorWithDefaultFileLocation(final String inputFileName) {
+  public static ITicketsProcessor getProcessorWithDefaultFileLocation(final String inputFileName) {
 
     //File Path
     final ClassLoader classLoader = TicketsUpgrader.class.getClassLoader();
@@ -38,35 +38,35 @@ public class TicketsUpgrader {
   }
 
   /**
-   * The method will return the {@link ITicketsFileProcessor} with default file
+   * The method will return the {@link ITicketsProcessor} with default file
    * location {@link CommonConstants.DEFAULT_FILE_LOCATION} and file name for
    * processing {@link CommonConstants.DEFAULT_FILE_NAME}
    *
    * @return
    */
-  public static ITicketsFileProcessor getProcessorWithDefaultFileLocationAndName() {
+  public static ITicketsProcessor getProcessorWithDefaultFileLocationAndName() {
 
     return getProcessorWithDefaultFileLocation(CommonConstants.DEFAULT_FILE_NAME);
   }
 
   /**
-   * The method will return the {@link ITicketsFileProcessor} with default file
+   * The method will return the {@link ITicketsProcessor} with default file
    * name for processing {@link CommonConstants.DEFAULT_FILE_NAME}
    *
    * @return
    */
-  public static ITicketsFileProcessor getProcessorWithDefaultFileName(final String inputFileLocation) {
+  public static ITicketsProcessor getProcessorWithDefaultFileName(final String inputFileLocation) {
 
     return getProcessorWithFileLocationAndName(inputFileLocation, CommonConstants.DEFAULT_FILE_NAME);
   }
 
   /**
-   * The method will return the {@link ITicketsFileProcessor} with input file
+   * The method will return the {@link ITicketsProcessor} with input file
    * location and name
    *
    * @return
    */
-  public static ITicketsFileProcessor getProcessorWithFileLocationAndName(final String inputFileLocation,
+  public static ITicketsProcessor getProcessorWithFileLocationAndName(final String inputFileLocation,
       final String inputFileName) {
 
     // This slash code is written just to Print Input/Output path in decent way
@@ -80,12 +80,12 @@ public class TicketsUpgrader {
   }
 
   /**
-   * The method will return the {@link ITicketsFileProcessor} with Input File
+   * The method will return the {@link ITicketsProcessor} with Input File
    * Path(complete path with file name) to process
    *
    * @return
    */
-  public static ITicketsFileProcessor getProcessorWithFilePath(final String inputFilePath) {
+  public static ITicketsProcessor getProcessorWithFilePath(final String inputFilePath) {
     final TicketsFileProcessor ticketsFileProcessor = new TicketsFileProcessor(inputFilePath);
     return ticketsFileProcessor;
   }

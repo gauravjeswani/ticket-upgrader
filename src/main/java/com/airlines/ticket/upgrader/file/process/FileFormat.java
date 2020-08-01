@@ -21,6 +21,15 @@ public enum FileFormat {
     }
   },
 
+  JSON(".json") {
+
+    @Override
+    public IFileProcessor getFileProcessor() {
+
+      return new JSONFileProcessor();
+    }
+  },
+
   TXT(".txt") {
 
     @Override

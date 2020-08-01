@@ -13,13 +13,13 @@ import com.airlines.ticket.upgrader.data.enums.FieldType;
 import com.airlines.ticket.upgrader.exception.exception.TicketUpgradeSystemException;
 
 /**
- * The class will read JSON input file and populate the data in Java Object
+ * The class will read CSV input file and populate the data in Java Object
  *
  * @author Gaurav Jeswani
  */
-class CSVFileProcessor implements IFileProcessor {
+class JSONFileProcessor implements IFileProcessor {
 
-  private static final String CSV_SEPERATOR = ",";
+  private static final String JSON_SEPERATOR = ":";
 
   /**
    * Method will write line by line to output file
@@ -36,7 +36,7 @@ class CSVFileProcessor implements IFileProcessor {
     for (final String value : values) {
       //For all other than first field add seperator
       if (!firstDataField) {
-        sb.append(CSV_SEPERATOR);
+        sb.append(JSON_SEPERATOR);
       }
 
       sb.append(value);
@@ -66,7 +66,7 @@ class CSVFileProcessor implements IFileProcessor {
       // Read Remaing lines which contains actual data
       while ((line = br.readLine()) != null) {
 
-        final String[] ticketData = line.split(CSV_SEPERATOR);
+        final String[] ticketData = line.split(JSON_SEPERATOR);
 
         final TicketInfo ticket = new TicketInfo(ticketData);
 

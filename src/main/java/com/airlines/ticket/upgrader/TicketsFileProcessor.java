@@ -17,7 +17,7 @@ import com.airlines.ticket.upgrader.file.process.IFileProcessor;
  *
  * @author z0043nrm
  */
-class TicketsFileProcessor implements ITicketsFileProcessor {
+class TicketsFileProcessor implements ITicketsProcessor {
 
   private final String inputFilePath;
 
@@ -41,7 +41,7 @@ class TicketsFileProcessor implements ITicketsFileProcessor {
    * {@inheritDoc}
    */
   @Override
-  public void processFile() {
+  public void processTickets() {
     try {
 
       //Get File Format

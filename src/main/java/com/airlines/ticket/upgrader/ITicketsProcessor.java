@@ -8,13 +8,13 @@ import com.airlines.ticket.upgrader.file.process.FileFormat;
  *
  * @author Gaurav Jeswani
  */
-public interface ITicketsFileProcessor {
+public interface ITicketsProcessor {
 
   /**
    * The method will process the file. It will validate data and create error
    * file with error code and processed files with discount code
    */
-  void processFile() throws TicketUpgradeException;
+  void processTickets() throws TicketUpgradeException;
 
   /**
    * The method will set the required Output File Format, if different from
